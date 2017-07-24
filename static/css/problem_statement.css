@@ -1,0 +1,50 @@
+
+.body {
+	background-color: ;
+}
+
+.container  {
+  /*display: flex;*/
+  position: relative;
+  top: 40px;
+  left: 0;
+  height: 100%;
+  width: 80%;
+}
+
+.container .row {
+  margin: 0 auto;
+}
+
+.backg{
+	background-color: #f3f3f3;
+}
+
+.extra_info {
+	color: grey;
+	padding: 4px;
+}
+
+.info_text {
+	display: inline;
+}
+
+.input-output-container{
+
+    border: 1px solid #e5e7e8;
+    border-radius: 3px;
+    margin: 20px;
+    font-size: 14px;
+    line-height: 21px;
+    
+}
+
+.darker {
+    color: #252c33;
+}
+
+.hei {
+  height: 80px;
+  color: red !important;
+}
+

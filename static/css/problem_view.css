@@ -1,0 +1,29 @@
+html,
+body {
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+
+}
+html {
+    display: table;
+    margin: auto;
+}
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
+.margin {
+  margin: 0 !important;
+}
+
+#login-page{
+	position: relative;
+	top: 5%;
+	left: 5%;
+}
+#prob_upload{
+    position: relative;
+    display: flex;
+}
+
+
