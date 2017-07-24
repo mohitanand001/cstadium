@@ -1,0 +1,135 @@
+{% extends "base/site_base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'css/problem_statement.css' %}">
+{% endblock %}
+
+{% block body_class %} backg {% endblock %}
+
+{% block content %}
+asd
+<div class="container">
+	  <div class="row valign-wrapper">
+	    <div class="col s12 m12 l12   valign">
+	      <div class="card  darken-1">
+	        <div class="card-content black-text">
+	          <span class="card-title blue-text text-darken-2"><strong>{{ problem_obj.name_of_problem }}</strong>  </span>
+	      	  <span class="extra_info" >Time limit:<div class="info_text">  {{ problem_obj.time_limit }} sec </div>  </span>
+	      	  <span class="extra_info" > Maximum Score:<div class="info_text"> {{ problem_obj.max_score }}</div> </span>
+	      	  <span class="extra_info" > Solved by:<div class="info_text"> {{ problem_obj.number_of_correct_submissions }}</div> </span>	      	  	
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+</div>      
+	      
+
+
+	<div class="container">
+	  <div class="row valign-wrapper">
+	    <div class="col s12 m12 l12   valign">
+	      <div class="card  darken-1">
+	        <div class="card-content black-text">
+	          <p style="font-family: 'Open Sans', sans-serif;" >
+	          	{{ problem_obj.statement | safe }}
+	          </p>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="container">
+	  <div class="row valign-wrapper">
+	    <div class="col s12 m12 l6"  >
+	      <div class="card  darken-1">
+	        <div class="card-content black-text">
+	          <p style="font-family: 'Open Sans', sans-serif;" class="hei" >
+	          Sample Input<br><br> 	     
+	          <code class="blue-text darken-3">
+	           	5 <br>
+	          	1 2 3 4 5
+	           </code>
+	          	
+	          </p>
+	        </div>
+	      </div>
+	    </div>
+	      
+	    <div class="col s12 m12 l6" >
+	      <div class="card  darken-1">
+	        <div class="card-content black-text">
+	          <p style="font-family: 'Open Sans', sans-serif;" class="hei" >
+	          Sample Output<br><br>
+	          <code class="blue-text darken-3" >
+	          	4
+	          </code>
+	          </p>
+	        </div>
+
+	      </div>
+
+	    </div>
+	  </div>
+
+
+	  <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn green" href="#modal1">Upload</a>
+
+
+
+  <!-- Modal Structure -->
+	  <div id="modal1" class="modal">
+	    <div class="modal-content">
+	      <h4>Select Code</h4>
+			 <form id="sol_upload" method="post" action="{% url 'checker:solution_submit' problem_id=problem_obj.problem_id %}" 
+	      enctype="multipart/form-data" novalidate="novalidate">
+	      		{% csrf_token %}
+			    <div class="file-field input-field">
+			      <div class="btn green">
+			        <span>File</span>
+			        <input name="code_upload" type="file">
+			      </div>
+			      <div class="file-path-wrapper">
+			        <input class="file-path validate" type="text" style="width: 50%;" >
+			      </div>
+			    </div>
+
+			    <button  class="btn waves-effect waves-light" type="submit" name="action" >Upload
+				    <i class="material-icons right">send</i>
+		      </button>
+			 </form>
+	    </div>
+	  </div>
+
+
+
+	          
+</div>	    
+
+      
+
+<script type="text/javascript">
+	 $(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+</script>
+	 
+{% endblock %}
+
+
+        
+	        
+
+
+
+
+	      
+
+	      
+
+
+
