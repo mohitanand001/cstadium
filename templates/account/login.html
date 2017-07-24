@@ -1,0 +1,99 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+{% load static %}
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+{% block menu %}{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/authstyle.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{% get_providers as socialaccount_providers %}
+
+<body>
+
+  <div id="login-page" class="row">
+    <div class="col s12 z-depth-5 card-panel">
+    <form class="login" method="POST" action="{% url 'account_login' %}" id="login_form" >
+      {% csrf_token %}
+      <form class="login-form">
+        <div class="row">
+          <div class="input-field col s12 center">
+            <img src="http://w3lessons.info/logo.png" alt="" class="responsive-img valign profile-image-login">
+            <p  class="center login-form-text">W3lessons - Material Design Login Form</p>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="id_login" maxlength="30" name="login" class='validate' type='text'  />
+              <label for='id_login'>Username</label>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">lock_outline</i>
+                <input id="id_password" class='validate' type='password' name='password' />
+                <label for='id_password'>Password</label>
+          </div>
+        </div>
+        <div class="row">          
+          <div class="input-field col s12 m12 l12  login-text">
+              <input type="checkbox" id="remember-me" />
+              <label for="remember-me">Remember me</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <button type='submit' name='btn_login' class='col s12 btn btn-small waves-effect waves-light orange darken-2'>Login</button>
+          </div>
+        </div>
+                        <div class="hr-sect">OR</div>
+      </form>
+    </form>
+
+
+        <div class="row">
+          <div class="input-field col s12">
+            <form  style="display: inline;" action="/accounts/facebook/login/?process=login" class="socialaccount_provider facebook">
+            <button class="loginBtn loginBtn--facebook waves-effect waves-light" >Facebook
+            </button>
+            </form>
+
+            <form  style="display: inline;" action="/accounts/google/login/?process=login" class="socialaccount_provider facebook">
+            <button class="loginBtn loginBtn--google waves-effect waves-light" >Google+
+            </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s6 m6 l6">
+            <p class="margin medium-small"><a href="{{ signup_url }}">Register Now</a></p>
+          </div>
+          <div class="input-field col s6 m6 l6">
+              <p class="margin right-align medium-small"><a href="{% url 'account_reset_password' %}">Forgot password?</a></p>
+          </div>          
+        </div>
+
+
+
+        
+
+
+  </div>
+</div>
+
+
+
+  
+   
+
+{% endblock %}

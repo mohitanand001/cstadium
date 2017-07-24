@@ -1,0 +1,59 @@
+{% extends "base/site_base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/home_view.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+<br><br><br>
+<div class="container">
+<div class="row">
+	{% for contest in all_contests %}
+		<div class="col s12 m6 l4 ">
+          <div class="card hoverable yellow darken-1 z-depth-5">
+            <div class="card-content black-text">
+              <span class="card-title"><strong>{{ contest.name_of_contest }}</strong>
+              {% if contest.live == True %}
+                   <div class="led-green"></div>
+              {% else %}
+              		<div class="led-red"></div>
+              {% endif %}	
+              </span>
+              <p>This is a <strong>{% if contest.rated_or_not %}rated{% else %}test(unrated){% endif %}</strong> contest.<br> This challenge is designed to test 
+              your algorithmic/mathematical thinking.<br>
+              <div class="contest_info">
+	              Total number of problems:{{ contest.number_of_problems }}
+	              <br> Total time allotted:{{ contest.duration_of_content }} hrs.
+              </div>
+              </p>
+            </div>
+            <div class="card-action blue-grey">
+              <a href="{% url 'contest:contest_view' contest_id=contest.contest_id %}" >Go to contest</a>
+              <a >Rank :</a>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+</div>
+</div>
+{% endblock %}
+
+
+            
+
+            
+
+
+            
+
+            
+
+
+
+
+
+
+	

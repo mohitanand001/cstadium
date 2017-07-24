@@ -1,0 +1,72 @@
+ <!DOCTYPE html>
+  <html>
+    <head>
+      <!-- Including Open Sans Font -->
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+          <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+      
+      {% block extra_head %}{% endblock %}
+
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+
+    <!-- Dropdown Structure -->
+      <ul id="dropdown1" class="dropdown-content">
+        <li><a href="#!">Settings</a></li>
+        <li class="divider"></li>
+        <li><a href="{% url 'account_logout' %}">Logout</a></li>
+      </ul>
+
+      <!-- Navbar -->
+      {% block navbar %}
+      <nav>
+        <div class="nav-wrapper red ">
+          <a href="#!" class="brand-logo">Code Stadium</a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+             {% if request.user.is_superuser %} <li><a href="{% url 'contest:prob_upload' %}">Problem Upload</a></li> {% endif %}
+            <li><a href="sass.html">Contests</a></li>
+            <li><a href="badges.html">Leaderboard</a></li>
+            {% if request.user.is_authenticated %}
+            <li><a href="#"><img src="{{ request.user.socialaccount_set.all.0.get_avatar_url }}" width="30px" height="30px" style="margin-top: 15px;" /></a></li>
+            <li style="padding-right:100px;" ><a class="dropdown-button" href="#!" data-activates="dropdown1">
+            <i class="material-icons right">arrow_drop_down</i></a></li>
+            {% endif %}
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+            <li><a href="#">Profile</a></li>
+            <li><a href="sass.html">Contests</a></li>
+            <li><a href="badges.html">Leaderboard</a></li>
+            <li><a href="mobile.html">Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+      {% endblock %}       <!-- End of navbar  -->
+
+      {% block content %}
+      {% endblock %}
+
+    </body>
+  </html>
+
+
+  <script type="text/javascript">
+  $( document ).ready(function(){
+    $(".button-collapse").sideNav();
+    $(".dropdown-button").dropdown();
+  })
+        
+  </script>
+        
