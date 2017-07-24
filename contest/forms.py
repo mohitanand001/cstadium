@@ -7,7 +7,6 @@ from ckeditor.fields import RichTextField
 
 
 class ProblemText(forms.ModelForm):
-   # statement = forms.CharField(label="",widget=RichTextField)	
    class Meta:
        model= Problem
        fields = ['statement']
