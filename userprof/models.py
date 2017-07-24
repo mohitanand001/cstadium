@@ -4,9 +4,6 @@ from django.db.models.signals import post_save
 from django.db import models
 from django.contrib.auth.models import User
 
-# from contest.models import Problem
-# Create your models here.
-
 
 
 def user_images_path(instance, filename):
