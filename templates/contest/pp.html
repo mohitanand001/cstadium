@@ -1,0 +1,124 @@
+{% extends "base/site_base.html" %}
+{% load static %}
+{% load tinymce_tags %}
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/problem_view.css' %}">
+{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+
+{% block content %}
+
+	<div style="position: absolute;" >
+	   {% if submitted == False %}
+	   		<div class="black">
+	       	<p class="red-text " > Problem wasn't uploaded due to the following reasons </p>
+	       	<ul>
+	       		<li class="white-text" >{{ id_error }}</li>	
+	       		<li class="white-text" >{{ title_error }}</li>
+	       	</ul>
+	       	</div>
+	   {% elif submitted == True %}
+	       	<p id="mess" class="green-text">Problem uploaded successfully</p>
+	   {% endif %}
+	</div>
+
+
+
+
+
+
+
+
+<form id="prob_upload" method="post" action="{% url 'contest:prob_upload' %}" enctype="multipart/form-data"
+ novalidate="novalidate">
+	{% csrf_token %}
+	{% load static %}
+	<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+	<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+
+ <div class="row">
+    	 <div class="row">
+	        <div class="col s12">
+	          <div class="input-field inline">
+	            <input  name="problem_id" id="problem_id" type="number" class="validate">
+	            <label for="problem_id" data-error="{{ id_error }}" data-success="right">Problem ID</label>
+	          </div>
+	          <div class="input-field inline">
+	            <input  name="problem_title" id="problem_title" type="text" class="validate">
+	            <label for="problem_title" data-error="provide " data-success="right">Problem Title</label>
+	          </div>
+
+	        </div>
+	      </div>
+	      
+		<div class="input-field col s12">
+			<div class="file-field input-field">
+			      <div class="btn">
+			        <span>Test Cases</span>
+			        <input name="test_files" type="file">
+			      </div>
+			      <div class="file-path-wrapper">
+			        <input  class="file-path validate" type="text">
+			      </div>
+		    </div>
+		    <br>
+		    <select name="contest_dropdown">
+		      <option value="" disabled selected>Contest</option>
+			      {% for contest in all_contests %}
+				      <option value="{{ contest.name_of_contest }}">{{ contest.name_of_contest }}</option>
+			      {% endfor %}
+		    </select> <br>
+		</div>
+
+		
+
+    	  <div class="row">
+	        <div class="col s12">
+	          <div class="input-field inline">
+	            <input min="1"  name="max_score" id="max_score" type="number" class="validate">
+	            <label for="max_score" data-error="The score cannot be less than 1" data-success="right">Max Score</label>
+	          </div>
+
+	          <div class="input-field inline">
+	            <input  max="10"  name="time_limit" id="time_limit" type="number" class="validate">
+	            <label for="time_limit" data-error="Time limit cannot exceed 10 seconds" >Time Limit</label>
+	          </div>
+	           <p><strong>Statement</strong> </p>
+	  	      	<div style="position: relative; right: 100px;">
+					{{ form.as_p }}  
+				</div>
+
+	          <button style="display: block" class="btn waves-effect waves-light" type="submit" name="action">Submit
+				    <i class="material-icons right">send</i>
+			    </button>
+
+	        </div>
+	      </div>
+  </div>
+</form>
+
+
+
+
+	      
+
+
+
+
+<script type="text/javascript">
+	 $(document).ready(function() {
+    $('select').material_select();
+  });
+
+   $('#mess').delay(3000).fadeOut(5000);
+
+
+</script>
+
+
+
+
+
+{% endblock %}

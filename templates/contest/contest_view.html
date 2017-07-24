@@ -1,0 +1,44 @@
+{% extends "base/site_base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/conteststyle.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+	<div id="demo">
+  <center><h1>Algorithmic Contest</h1></center><br>
+  
+  <!-- Responsive table starts here -->
+  <!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->
+  <div class="table-responsive-vertical shadow-z-5">
+  <!-- Table starts here -->
+  <table id="table" class="table table-hover table-mc-light-blue">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Problem</th>
+          <th>Submissions</th>
+          <th>Max Score</th>
+        </tr>
+      </thead>
+      <tbody>
+
+			{% for problem in all_problems %}
+				<tr>
+					<td data-title="ID" >{{ problem.problem_id }} </td>
+					<td data-title="Problem"> <a href="{% url 'contest:problem' problem.problem_id %}">{{ problem.name_of_problem }}</a> </td>
+					<td data-title="Submissions"> {{ problem.number_of_correct_submissions }}</td>
+					<td data-title="Max Score" > {{ problem.max_score }}</td>		 
+				</tr>		
+			{% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+ </div>
+
+{% endblock %}
+
