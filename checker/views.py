@@ -4,7 +4,6 @@ import subprocess
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 
-# Create your views here.
 from .models import SolutionCode
 from contest.models import Problem
 from userprof.models import UserProfile
@@ -46,29 +45,19 @@ def checker(request,problem_obj,solution_obj):
             run_proc  = subprocess.Popen(
                         './'+str(code_object_file)+' < '+str(file_path),
                         cwd=sol_dir_path,shell=True) 
-            # p = subprocess.Popen('g++ ',shell=True,cwd=)
         
     else:
         return verdict[4]
 
 
 
-        # print os.path.join(input_dir_path,filename)
-    # print "askdjk "+str(os.listdir(input_dir))
-
-
-
-
-
 def solution_submit(request,problem_id):
     if request.method=="POST":
-        # print "contentsd "+str(request.FILES['code_upload'].read())
         problem_obj = Problem.objects.get(problem_id=problem_id)
         user_prof = UserProfile.objects.get(user=request.user)
         solution_obj = SolutionCode(problem_associated=problem_obj,
                        user_associated=user_prof,
                        code_text=request.FILES['code_upload'],)
-        # print "file contents "+str(request.FILES['code_upload'].read())
         code = request.FILES['code_upload'].read()
         solution_obj.save()
         

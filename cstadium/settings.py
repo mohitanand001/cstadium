@@ -173,6 +173,3 @@ CKEDITOR_CONFIGS = {
         'width': 400,
     },
 }
-
-# Required by django-allauth to extend the sign up form to include profile data
-# ACCOUNT_SIGNUP_FORM_CLASS ='userprof.forms.SignupForm'
