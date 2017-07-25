@@ -18,7 +18,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='problem',
             name='statement',
-            field=tinymce.models.HTMLField(default=datetime.datetime(2017, 6, 30, 20, 47, 57, 848591, tzinfo=utc)),
+            field=tinymce.models.HTMLField(default=datetime.datetime(
+                2017, 6, 30, 20, 47, 57, 848591, tzinfo=utc)),
             preserve_default=False,
         ),
     ]

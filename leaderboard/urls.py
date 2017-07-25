@@ -3,6 +3,5 @@ from . import views
 
 
 urlpatterns = [
-	url(r'',views.leaderboard,name='leaderboard')
+    url(r'', views.leaderboard, name='leaderboard')
 ]
-    

@@ -17,6 +17,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='problem',
             name='solved_by_whom',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='problem_solved_by', to='userprof.UserProfile'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE,
+                                    related_name='problem_solved_by', to='userprof.UserProfile'),
         ),
     ]

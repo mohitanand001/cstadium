@@ -7,9 +7,9 @@ from ckeditor.fields import RichTextField
 
 
 class ProblemText(forms.ModelForm):
-   class Meta:
-       model= Problem
-       fields = ['statement']
-       labels = {
+    class Meta:
+        model = Problem
+        fields = ['statement']
+        labels = {
             'statement': _(''),
         }

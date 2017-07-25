@@ -8,9 +8,11 @@ from userprof.models import UserProfile
 
 
 class SolutionCode(models.Model):
-    problem_associated = models.ForeignKey(Problem,null='true',related_name='solutions_to_problem')
-    user_associated    = models.ForeignKey(UserProfile,null=True,related_name='user_so')
-    code_text  = models.FileField(null=True)
+    problem_associated = models.ForeignKey(
+        Problem, null='true', related_name='solutions_to_problem')
+    user_associated = models.ForeignKey(
+        UserProfile, null=True, related_name='user_so')
+    code_text = models.FileField(null=True)
 
     def __str__(self):
-        return "solution_"+str(self.pk)
+        return "solution_" + str(self.pk)

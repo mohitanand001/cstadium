@@ -16,6 +16,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='problem',
             name='sample_io',
-            field=models.FileField(null=True, upload_to=contest.models.sample_io_upload),
+            field=models.FileField(
+                null=True, upload_to=contest.models.sample_io_upload),
         ),
     ]

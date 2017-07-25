@@ -10,6 +10,7 @@ import os
 
 # Create your models here.
 
+
 class Contest(models.Model):
     contest_id = models.IntegerField(unique=True)
     name_of_contest = models.CharField(max_length=20)
@@ -23,19 +24,22 @@ class Contest(models.Model):
     def __str__(self):
         return self.name_of_contest
 
+
 def test_file_upload(instance, filename):
     # file will be uploaded to MEDIA_ROOT/<problem_id>/<filename>
     return 'problems/problem_{0}/{1}'.format(instance.problem_id, filename)
 
-def sample_io_upload(instance,filename):
+
+def sample_io_upload(instance, filename):
     return 'problem_{0}/{1}'.format(instance.problem_id, filename)
+
 
 class Problem(models.Model):
     problem_id = models.IntegerField(primary_key=True)
-    name_of_problem = models.CharField(unique=True,max_length=40)
-    test_files = models.FileField(upload_to=test_file_upload,null=True)
+    name_of_problem = models.CharField(unique=True, max_length=40)
+    test_files = models.FileField(upload_to=test_file_upload, null=True)
     statement = RichTextField()
-    contest = models.ForeignKey(Contest,null=True,related_name='problems')
+    contest = models.ForeignKey(Contest, null=True, related_name='problems')
     time_limit = models.IntegerField(default=1)
     max_score = models.IntegerField(default=100)
     number_of_correct_submissions = models.IntegerField(default=0)
@@ -43,5 +47,3 @@ class Problem(models.Model):
 
     def __str__(self):
         return self.name_of_problem
-    
-

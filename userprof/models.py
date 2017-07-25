@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
 
-
 def user_images_path(instance, filename):
     filename, ext = os.path.splitext(filename)
     return 'avatars/user_{0}/{1}{2}'.format(instance.user.id, slugify(filename), ext)
@@ -15,8 +14,9 @@ def user_images_path(instance, filename):
 class UserProfile(models.Model):
 
     user = models.OneToOneField(User, related_name="userprofile")
-    user_avatar = models.ImageField(upload_to=user_images_path, blank=True, null=True)
-    age = models.IntegerField(default = 10)
+    user_avatar = models.ImageField(
+        upload_to=user_images_path, blank=True, null=True)
+    age = models.IntegerField(default=10)
 
     def avatar(self, size=36):
         if self.user_avatar:
@@ -38,5 +38,5 @@ def create_profile(sender, **kwargs):
         profile = UserProfile(user=user)
         profile.save()
 
-post_save.connect(create_profile, sender=User)
 
+post_save.connect(create_profile, sender=User)

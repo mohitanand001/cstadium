@@ -18,7 +18,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Contest',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('contest_id', models.IntegerField(unique=True)),
                 ('name_of_contest', models.CharField(max_length=20)),
                 ('rated_or_test', models.BooleanField(default=False)),
@@ -32,14 +33,18 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Problem',
             fields=[
-                ('problem_id', models.IntegerField(primary_key=True, serialize=False)),
+                ('problem_id', models.IntegerField(
+                    primary_key=True, serialize=False)),
                 ('name_of_problem', models.CharField(max_length=40)),
-                ('test_files', models.FileField(null=True, upload_to=contest.models.test_file_upload)),
-                ('sample_io', models.FileField(null=True, upload_to=contest.models.sample_io_upload)),
+                ('test_files', models.FileField(null=True,
+                                                upload_to=contest.models.test_file_upload)),
+                ('sample_io', models.FileField(null=True,
+                                               upload_to=contest.models.sample_io_upload)),
                 ('time_limit', models.IntegerField(default=1)),
                 ('max_score', models.IntegerField(default=100)),
                 ('number_of_correct_submissions', models.IntegerField(default=0)),
-                ('contest', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='problems', to='contest.Contest')),
+                ('contest', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE,
+                                              related_name='problems', to='contest.Contest')),
             ],
         ),
     ]

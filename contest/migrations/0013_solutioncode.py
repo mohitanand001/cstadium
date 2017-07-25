@@ -17,10 +17,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='SolutionCode',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('code_text', models.FileField(upload_to='as')),
-                ('problem_associated', models.ForeignKey(null='true', on_delete=django.db.models.deletion.CASCADE, related_name='solutions_to_problem', to='contest.Problem')),
-                ('user_associated', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='user_so', to='userprof.UserProfile')),
+                ('problem_associated', models.ForeignKey(null='true', on_delete=django.db.models.deletion.CASCADE,
+                                                         related_name='solutions_to_problem', to='contest.Problem')),
+                ('user_associated', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE,
+                                                      related_name='user_so', to='userprof.UserProfile')),
             ],
         ),
     ]

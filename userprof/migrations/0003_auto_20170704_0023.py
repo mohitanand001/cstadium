@@ -22,11 +22,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='userprofile',
             name='user_avatar',
-            field=models.ImageField(blank=True, null=True, upload_to=userprof.models.user_images_path),
+            field=models.ImageField(
+                blank=True, null=True, upload_to=userprof.models.user_images_path),
         ),
         migrations.AlterField(
             model_name='userprofile',
             name='user',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='userprofile', to=settings.AUTH_USER_MODEL),
+            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE,
+                                       related_name='userprofile', to=settings.AUTH_USER_MODEL),
         ),
     ]
