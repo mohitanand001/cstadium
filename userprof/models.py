@@ -3,11 +3,11 @@ from __future__ import unicode_literals
 from django.db.models.signals import post_save
 from django.db import models
 from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
 
 
 
 def user_images_path(instance, filename):
-    from django.template.defaultfilters import slugify
     filename, ext = os.path.splitext(filename)
     return 'avatars/user_{0}/{1}{2}'.format(instance.user.id, slugify(filename), ext)
 
