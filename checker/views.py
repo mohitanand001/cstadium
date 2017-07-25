@@ -50,7 +50,6 @@ def checker(request,problem_obj,solution_obj):
                         cwd=sol_dir_path,shell=False)
 
             run_proc.wait() 
-        
     else:
         return verdict[4]
 
