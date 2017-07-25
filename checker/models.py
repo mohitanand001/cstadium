@@ -9,7 +9,8 @@ from userprof.models import UserProfile
 
 def upload_solution_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<username>/filename
-    return 'solutions/user_{0}/{1}'.format(instance.user_associated, filename)
+    filename = instance.problem_associated.problem_id
+    return 'solutions/user_{0}/prob_{1}/sol'.format(instance.user_associated, filename)
 
 
 class SolutionCode(models.Model):
