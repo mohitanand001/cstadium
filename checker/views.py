@@ -1,5 +1,6 @@
 import os
 import subprocess
+import shlex
 
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
@@ -27,10 +28,10 @@ def checker(request,problem_obj,solution_obj):
         'media/solutions/user_{0}'.format(request.user.username))
 
     
-    compile_proc = subprocess.Popen('g++ sol_{0}_{1}.cpp -o sol_{0}_{1}'
-         .format(
-             str(problem_obj.problem_id),
-             str(solution_obj.pk)),cwd=sol_dir_path,shell=True)
+    compile_proc = subprocess.Popen(shlex.split('g++ sol_{0}_{1}.cpp -o sol_{0}_{1}'
+             .format(
+                 str(problem_obj.problem_id),
+                 str(solution_obj.pk))),cwd=sol_dir_path,shell=False)
     compile_proc.wait()
 
     all_sol_list = os.listdir(sol_dir_path)
@@ -42,9 +43,13 @@ def checker(request,problem_obj,solution_obj):
 
         for filename in all_input_list:
             file_path = os.path.join(input_dir_path,filename)
+            file_obj = open(file_path,'r')
             run_proc  = subprocess.Popen(
-                        './'+str(code_object_file)+' < '+str(file_path),
-                        cwd=sol_dir_path,shell=True) 
+                        shlex.split('./'+str(code_object_file)),
+                        stdin=file_obj,
+                        cwd=sol_dir_path,shell=False)
+
+            run_proc.wait() 
         
     else:
         return verdict[4]
