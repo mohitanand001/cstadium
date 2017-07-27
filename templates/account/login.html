@@ -14,7 +14,6 @@
 {% get_providers as socialaccount_providers %}
 
 <body>
-
   <div id="login-page" class="row">
     <div class="col s12 z-depth-5 card-panel">
     <form class="login" method="POST" action="{% url 'account_login' %}" id="login_form" >
@@ -48,18 +47,15 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-
             {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}
                 <button type='submit' name='btn_login' class='col s12 btn btn-small waves-effect waves-light orange darken-2'>Login</button>
           </div>
         </div>
-                        <div class="hr-sect">OR</div>
+       <div class="hr-sect">OR</div>
       </form>
     </form>
-
-
         <div class="row">
           <div class="input-field col s12">
             <form  style="display: inline;" action="/accounts/facebook/login/?process=login" class="socialaccount_provider facebook">
@@ -82,18 +78,7 @@
               <p class="margin right-align medium-small"><a href="{% url 'account_reset_password' %}">Forgot password?</a></p>
           </div>          
         </div>
-
-
-
-        
-
-
   </div>
 </div>
-
-
-
-  
-   
-
+</body>
 {% endblock %}

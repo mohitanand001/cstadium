@@ -173,3 +173,10 @@ CKEDITOR_CONFIGS = {
         'width': 400,
     },
 }
+
+DEFAULT_FROM_EMAIL = "support@cstadium.com"
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
