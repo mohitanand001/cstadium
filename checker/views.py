@@ -65,10 +65,11 @@ def solution_submit(request, problem_id):
 
         media_root = settings.MEDIA_ROOT
         sol_dir_path = joindir(media_root, 'solutions', 'user_{0}'.format(request.user),
-                               'prob_{0}'.format(problem_id), 'sol')
+                               'prob_{0}'.format(problem_id))
         old_sol_name = joindir(sol_dir_path, 'sol')
         new_sol_name = joindir(
             sol_dir_path, 'sol_{0}.cpp'.format(solution_obj.pk))
+        print "apd "+str(old_sol_name)
         os.rename(old_sol_name, new_sol_name)
 
         checker(request, problem_obj, solution_obj)
